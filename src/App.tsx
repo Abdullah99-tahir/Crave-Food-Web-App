@@ -33,8 +33,8 @@ export default function App() {
 
   const filteredRestaurants = useMemo(() => {
     return restaurants.filter(r => {
-      const matchesSearch = r.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                            r.categories.some(c => c.toLowerCase().includes(searchQuery.toLowerCase()));
+      const matchesSearch = r.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        r.categories.some(c => c.toLowerCase().includes(searchQuery.toLowerCase()));
       const matchesCategory = selectedCategory === 'All' || r.categories.includes(selectedCategory);
       return matchesSearch && matchesCategory;
     });
@@ -94,8 +94,8 @@ export default function App() {
     setCheckoutForm({ name: '', address: '', phone: '', paymentMethod: 'card' });
   };
   const scrollToTop = () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-};
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
     <div className="min-h-screen bg-black font-sans text-gray-900">
@@ -108,13 +108,13 @@ export default function App() {
             </div>
             <span className="font-bold text-xl tracking-tight text-orange-500">Crave Food</span>
           </div>
-          
+
           <div className="hidden md:flex items-center gap-2 text-sm font-medium text-gray-600 bg-black-100 px-4 py-2 rounded-full">
             <MapPin className="w-4 h-4 text-orange-500" />
             <span>Delivering to: <span className="text-white">Gujranwala</span></span>
           </div>
 
-          <button 
+          <button
             onClick={() => setIsCartOpen(true)}
             className="relative p-2 text-gray-300 hover:bg-orange-500 rounded-full transition-colors"
           >
@@ -132,7 +132,7 @@ export default function App() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <AnimatePresence mode="wait">
           {activeTab === 'home' ? (
-            <motion.div 
+            <motion.div
               key="home"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -150,7 +150,7 @@ export default function App() {
                   </p>
                   <div className="relative flex items-center">
                     <Search className="absolute left-4 w-5 h-5 text-gray-400" />
-                    <input 
+                    <input
                       type="text"
                       placeholder="Search for restaurants or cuisines..."
                       value={searchQuery}
@@ -174,11 +174,10 @@ export default function App() {
                     <button
                       key={category}
                       onClick={() => setSelectedCategory(category)}
-                      className={`whitespace-nowrap px-6 py-2.5 rounded-full font-medium transition-colors ${
-                        selectedCategory === category 
-                          ? 'bg-gray-900 text-white' 
+                      className={`whitespace-nowrap px-6 py-2.5 rounded-full font-medium transition-colors ${selectedCategory === category
+                          ? 'bg-gray-900 text-white'
                           : 'bg-orange-500 text-white hover:bg-orange-700 '
-                      }`}
+                        }`}
                     >
                       {category}
                     </button>
@@ -205,8 +204,8 @@ export default function App() {
                         className="bg-gray-900 text-white rounded-2xl overflow-hidden shadow-sm border border-orange-700 cursor-pointer hover:shadow-md transition-shadow hover:bg-orange-500"
                       >
                         <div className="relative h-48 ">
-                          <img 
-                            src={restaurant.image} 
+                          <img
+                            src={restaurant.image}
                             alt={restaurant.name}
                             className="w-full h-full object-cover"
                             referrerPolicy="no-referrer"
@@ -252,7 +251,7 @@ export default function App() {
               exit={{ opacity: 0, x: -20 }}
               className="space-y-8"
             >
-              <button 
+              <button
                 onClick={handleBack}
                 className="flex items-center gap-2 text-orange-500 hover:text-orange-700 font-medium transition-colors"
               >
@@ -262,8 +261,8 @@ export default function App() {
 
               <div className="bg-black rounded-3xl overflow-hidden shadow-sm border border-orange-500">
                 <div className="h-64 relative">
-                  <img 
-                    src={selectedRestaurant.image} 
+                  <img
+                    src={selectedRestaurant.image}
                     alt={selectedRestaurant.name}
                     className="w-full h-full object-cover"
                     referrerPolicy="no-referrer"
@@ -284,7 +283,7 @@ export default function App() {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="p-6 md:p-8">
                   <h2 className="text-2xl font-bold mb-6 text-orange-500">Menu</h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -296,13 +295,13 @@ export default function App() {
                           <div className="font-bold text-white">${item.price.toFixed(2)}</div>
                         </div>
                         <div className="relative w-28 h-28 shrink-0">
-                          <img 
-                            src={item.image} 
+                          <img
+                            src={item.image}
                             alt={item.name}
                             className="w-full h-full object-cover rounded-xl"
                             referrerPolicy="no-referrer"
                           />
-                          <button 
+                          <button
                             onClick={() => addToCart(item, selectedRestaurant.id)}
                             className="absolute -bottom-2 -right-2 bg-white text-orange-500 hover:bg-black hover:text-white p-2 rounded-full shadow-md border border-gray-100 transition-colors"
                           >
@@ -323,7 +322,7 @@ export default function App() {
               exit={{ opacity: 0, y: -20 }}
               className="max-w-3xl mx-auto space-y-8"
             >
-              <button 
+              <button
                 onClick={() => setActiveTab('restaurant')}
                 className="flex items-center gap-2 text-gray-600 hover:text-gray-900 font-medium transition-colors"
               >
@@ -333,7 +332,7 @@ export default function App() {
 
               <div className="bg-gray-900 rounded-3xl p-6 md:p-8 shadow-sm border border-gray-100">
                 <h2 className="text-2xl font-bold mb-6 text-orange-500">Checkout</h2>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {/* Order Summary */}
                   <div>
@@ -349,7 +348,7 @@ export default function App() {
                         </div>
                       ))}
                     </div>
-                    
+
                     <div className="border-t border-gray-100 pt-4 space-y-2">
                       <div className="flex justify-between text-gray-200">
                         <span>Subtotal</span>
@@ -372,21 +371,21 @@ export default function App() {
                     <form onSubmit={handleCheckoutSubmit} className="space-y-4">
                       <div>
                         <label className="block text-sm font-medium text-gray-200 mb-1">Full Name</label>
-                        <input 
-                          type="text" 
+                        <input
+                          type="text"
                           required
                           value={checkoutForm.name}
-                          onChange={e => setCheckoutForm({...checkoutForm, name: e.target.value})}
+                          onChange={e => setCheckoutForm({ ...checkoutForm, name: e.target.value })}
                           className="w-full px-4 py-2 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 text-white"
                           placeholder="John Doe"
                         />
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-gray-200 mb-1">Delivery Address</label>
-                        <textarea 
+                        <textarea
                           required
                           value={checkoutForm.address}
-                          onChange={e => setCheckoutForm({...checkoutForm, address: e.target.value})}
+                          onChange={e => setCheckoutForm({ ...checkoutForm, address: e.target.value })}
                           className="w-full px-4 py-2 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 text-white"
                           placeholder="123 Main St, Apt 4B"
                           rows={3}
@@ -394,37 +393,37 @@ export default function App() {
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-gray-200 mb-1">Phone Number</label>
-                        <input 
-                          type="tel" 
+                        <input
+                          type="tel"
                           required
                           value={checkoutForm.phone}
-                          onChange={e => setCheckoutForm({...checkoutForm, phone: e.target.value})}
+                          onChange={e => setCheckoutForm({ ...checkoutForm, phone: e.target.value })}
                           className="w-full px-4 py-2 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 text-white"
                           placeholder="(555) 123-4567"
                         />
                       </div>
-                      
+
                       <div className="pt-4">
                         <h3 className="text-lg font-bold mb-4 text-orange-500">Payment Method</h3>
                         <div className="space-y-2">
                           <label className="flex items-center gap-3 p-3 border border-gray-200 rounded-xl cursor-pointer hover:bg-orange-500 text-white">
-                            <input 
-                              type="radio" 
-                              name="payment" 
+                            <input
+                              type="radio"
+                              name="payment"
                               value="card"
                               checked={checkoutForm.paymentMethod === 'card'}
-                              onChange={e => setCheckoutForm({...checkoutForm, paymentMethod: e.target.value})}
+                              onChange={e => setCheckoutForm({ ...checkoutForm, paymentMethod: e.target.value })}
                               className="text-orange-500 focus:ring-orange-500"
                             />
                             <span className="font-medium">Credit / Debit Card</span>
                           </label>
                           <label className="flex items-center gap-3 p-3 border border-gray-200 rounded-xl cursor-pointer hover:bg-orange-500 text-white">
-                            <input 
-                              type="radio" 
-                              name="payment" 
+                            <input
+                              type="radio"
+                              name="payment"
                               value="paypal"
                               checked={checkoutForm.paymentMethod === 'paypal'}
-                              onChange={e => setCheckoutForm({...checkoutForm, paymentMethod: e.target.value})}
+                              onChange={e => setCheckoutForm({ ...checkoutForm, paymentMethod: e.target.value })}
                               className="text-orange-500 focus:ring-orange-500"
                             />
                             <span className="font-medium">PayPal</span>
@@ -432,7 +431,7 @@ export default function App() {
                         </div>
                       </div>
 
-                      <button 
+                      <button
                         type="submit"
                         className="w-full bg-orange-500 text-white font-bold py-4 rounded-xl hover:bg-orange-600 transition-colors shadow-sm mt-6"
                       >
@@ -459,7 +458,7 @@ export default function App() {
               <p className="text-gray-200 mb-8 text-lg">
                 Your order from {selectedRestaurant?.name} is being prepared and will be delivered to {checkoutForm.address} soon.
               </p>
-              <button 
+              <button
                 onClick={handleReturnHome}
                 className="bg-gray-800 text-white font-bold py-3 px-8 rounded-xl hover:bg-orange-500 transition-colors"
               >
@@ -471,122 +470,122 @@ export default function App() {
       </main>
 
       {/* Professional Footer */}
-<footer className="bg-black text-gray-300 border-t border-orange-900 mt-20 relative">
+      <footer className="bg-black text-gray-300 border-t border-orange-900 mt-20 relative">
 
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
 
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
 
-      {/* Brand */}
-      <div>
-        <div className="flex items-center gap-2 mb-5">
-          <div className="w-9 h-9 bg-orange-500 rounded-xl flex items-center justify-center text-white font-bold text-lg">
-            C
+            {/* Brand */}
+            <div>
+              <div className="flex items-center gap-2 mb-5">
+                <div className="w-9 h-9 bg-orange-500 rounded-xl flex items-center justify-center text-white font-bold text-lg">
+                  C
+                </div>
+                <span className="font-bold text-2xl text-orange-500">
+                  Crave Food
+                </span>
+              </div>
+              <p className="text-gray-400 text-sm leading-relaxed mb-6">
+                Delivering happiness to your doorstep.
+                Discover top restaurants and enjoy fast delivery anytime.
+              </p>
+
+              {/* Social Icons */}
+              <div className="flex gap-4">
+                <div className="p-2 bg-gray-900 hover:bg-orange-500 rounded-full cursor-pointer transition-colors">
+                  <Facebook className="w-4 h-4" />
+                </div>
+                <div className="p-2 bg-gray-900 hover:bg-orange-500 rounded-full cursor-pointer transition-colors">
+                  <Instagram className="w-4 h-4" />
+                </div>
+                <div className="p-2 bg-gray-900 hover:bg-orange-500 rounded-full cursor-pointer transition-colors">
+                  <Twitter className="w-4 h-4" />
+                </div>
+              </div>
+            </div>
+
+            {/* Quick Links */}
+            <div>
+              <h3 className="text-white font-bold mb-5">Quick Links</h3>
+              <ul className="space-y-3 text-sm">
+                <li className="hover:text-orange-500 cursor-pointer transition-colors">Home</li>
+                <li className="hover:text-orange-500 cursor-pointer transition-colors">Restaurants</li>
+                <li className="hover:text-orange-500 cursor-pointer transition-colors">Categories</li>
+                <li className="hover:text-orange-500 cursor-pointer transition-colors">Checkout</li>
+              </ul>
+            </div>
+
+            {/* Support */}
+            <div>
+              <h3 className="text-white font-bold mb-5">Support</h3>
+              <ul className="space-y-3 text-sm">
+                <li className="hover:text-orange-500 cursor-pointer transition-colors">Help Center</li>
+                <li className="hover:text-orange-500 cursor-pointer transition-colors">Privacy Policy</li>
+                <li className="hover:text-orange-500 cursor-pointer transition-colors">Terms & Conditions</li>
+                <li className="hover:text-orange-500 cursor-pointer transition-colors">Contact Us</li>
+              </ul>
+            </div>
+
+            {/* Newsletter */}
+            <div>
+              <h3 className="text-white font-bold mb-5">Newsletter</h3>
+              <p className="text-sm text-gray-400 mb-4">
+                Subscribe to get latest offers & updates.
+              </p>
+
+              <div className="flex">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="flex-1 px-4 py-2 rounded-l-xl bg-gray-900 border border-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+                />
+                <button className="bg-orange-500 px-4 rounded-r-xl hover:bg-orange-600 transition-colors">
+                  <Mail className="w-4 h-4 text-white" />
+                </button>
+              </div>
+            </div>
+
           </div>
-          <span className="font-bold text-2xl text-orange-500">
-            Crave Food
-          </span>
+
+          {/* Bottom Section */}
+          <div className="border-t border-gray-800 mt-12 pt-6 flex flex-col md:flex-row items-center justify-between text-sm text-gray-500 gap-4">
+
+            <p>
+              © {new Date().getFullYear()} Crave Food. All rights reserved.
+            </p>
+
+            <div className="flex gap-6">
+              <span className="hover:text-orange-500 cursor-pointer transition-colors">Privacy</span>
+              <span className="hover:text-orange-500 cursor-pointer transition-colors">Terms</span>
+            </div>
+
+          </div>
+
         </div>
-        <p className="text-gray-400 text-sm leading-relaxed mb-6">
-          Delivering happiness to your doorstep.  
-          Discover top restaurants and enjoy fast delivery anytime.
-        </p>
 
-        {/* Social Icons */}
-        <div className="flex gap-4">
-          <div className="p-2 bg-gray-900 hover:bg-orange-500 rounded-full cursor-pointer transition-colors">
-            <Facebook className="w-4 h-4" />
-          </div>
-          <div className="p-2 bg-gray-900 hover:bg-orange-500 rounded-full cursor-pointer transition-colors">
-            <Instagram className="w-4 h-4" />
-          </div>
-          <div className="p-2 bg-gray-900 hover:bg-orange-500 rounded-full cursor-pointer transition-colors">
-            <Twitter className="w-4 h-4" />
-          </div>
-        </div>
-      </div>
+        {/* Scroll To Top Button */}
+        <button
+          onClick={scrollToTop}
+          className="absolute right-6 bottom-6 bg-orange-500 hover:bg-orange-600 text-white p-3 rounded-full shadow-lg transition-all"
+        >
+          <ArrowUp className="w-5 h-5" />
+        </button>
 
-      {/* Quick Links */}
-      <div>
-        <h3 className="text-white font-bold mb-5">Quick Links</h3>
-        <ul className="space-y-3 text-sm">
-          <li className="hover:text-orange-500 cursor-pointer transition-colors">Home</li>
-          <li className="hover:text-orange-500 cursor-pointer transition-colors">Restaurants</li>
-          <li className="hover:text-orange-500 cursor-pointer transition-colors">Categories</li>
-          <li className="hover:text-orange-500 cursor-pointer transition-colors">Checkout</li>
-        </ul>
-      </div>
-
-      {/* Support */}
-      <div>
-        <h3 className="text-white font-bold mb-5">Support</h3>
-        <ul className="space-y-3 text-sm">
-          <li className="hover:text-orange-500 cursor-pointer transition-colors">Help Center</li>
-          <li className="hover:text-orange-500 cursor-pointer transition-colors">Privacy Policy</li>
-          <li className="hover:text-orange-500 cursor-pointer transition-colors">Terms & Conditions</li>
-          <li className="hover:text-orange-500 cursor-pointer transition-colors">Contact Us</li>
-        </ul>
-      </div>
-
-      {/* Newsletter */}
-      <div>
-        <h3 className="text-white font-bold mb-5">Newsletter</h3>
-        <p className="text-sm text-gray-400 mb-4">
-          Subscribe to get latest offers & updates.
-        </p>
-
-        <div className="flex">
-          <input
-            type="email"
-            placeholder="Enter your email"
-            className="flex-1 px-4 py-2 rounded-l-xl bg-gray-900 border border-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
-          />
-          <button className="bg-orange-500 px-4 rounded-r-xl hover:bg-orange-600 transition-colors">
-            <Mail className="w-4 h-4 text-white" />
-          </button>
-        </div>
-      </div>
-
-    </div>
-
-    {/* Bottom Section */}
-    <div className="border-t border-gray-800 mt-12 pt-6 flex flex-col md:flex-row items-center justify-between text-sm text-gray-500 gap-4">
-
-      <p>
-        © {new Date().getFullYear()} Crave Food. All rights reserved.
-      </p>
-
-      <div className="flex gap-6">
-        <span className="hover:text-orange-500 cursor-pointer transition-colors">Privacy</span>
-        <span className="hover:text-orange-500 cursor-pointer transition-colors">Terms</span>
-      </div>
-
-    </div>
-
-  </div>
-
-  {/* Scroll To Top Button */}
-  <button
-    onClick={scrollToTop}
-    className="absolute right-6 bottom-6 bg-orange-500 hover:bg-orange-600 text-white p-3 rounded-full shadow-lg transition-all"
-  >
-    <ArrowUp className="w-5 h-5" />
-  </button>
-
-</footer>
+      </footer>
 
       {/* Cart Sidebar */}
       <AnimatePresence>
         {isCartOpen && (
           <>
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsCartOpen(false)}
               className="fixed inset-0 bg-black/40 z-50 backdrop-blur-sm"
             />
-            <motion.div 
+            <motion.div
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
@@ -598,7 +597,7 @@ export default function App() {
                   <ShoppingBag className="w-5 h-5" />
                   Your Order
                 </h2>
-                <button 
+                <button
                   onClick={() => setIsCartOpen(false)}
                   className="p-2 hover:bg-gray-100 rounded-full transition-colors"
                 >
@@ -611,7 +610,7 @@ export default function App() {
                   <div className="h-full flex flex-col items-center justify-center text-gray-500 space-y-4">
                     <ShoppingBag className="w-16 h-16 text-gray-300" />
                     <p className="text-lg font-medium">Your cart is empty</p>
-                    <button 
+                    <button
                       onClick={() => setIsCartOpen(false)}
                       className="text-orange-500 font-medium hover:underline"
                     >
@@ -622,8 +621,8 @@ export default function App() {
                   <div className="space-y-6">
                     {cart.map(item => (
                       <div key={item.id} className="flex gap-4">
-                        <img 
-                          src={item.image} 
+                        <img
+                          src={item.image}
                           alt={item.name}
                           className="w-16 h-16 object-cover rounded-lg shrink-0"
                           referrerPolicy="no-referrer"
@@ -634,14 +633,14 @@ export default function App() {
                             ${(item.price * item.quantity).toFixed(2)}
                           </div>
                           <div className="flex items-center gap-3">
-                            <button 
+                            <button
                               onClick={() => updateQuantity(item.id, -1)}
                               className="w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 text-gray-600 transition-colors"
                             >
                               {item.quantity === 1 ? <Trash2 className="w-3.5 h-3.5" /> : <Minus className="w-3.5 h-3.5" />}
                             </button>
                             <span className="font-medium text-sm w-4 text-center">{item.quantity}</span>
-                            <button 
+                            <button
                               onClick={() => updateQuantity(item.id, 1)}
                               className="w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 text-gray-600 transition-colors"
                             >
@@ -671,7 +670,7 @@ export default function App() {
                       <span>${(cartTotal + (selectedRestaurant?.deliveryFee || 0)).toFixed(2)}</span>
                     </div>
                   </div>
-                  <button 
+                  <button
                     onClick={handleCheckoutClick}
                     className="w-full bg-orange-500 text-white font-bold py-4 rounded-xl hover:bg-orange-600 transition-colors shadow-sm"
                   >
@@ -683,7 +682,7 @@ export default function App() {
           </>
         )}
       </AnimatePresence>
-      
+
     </div>
   );
 }
